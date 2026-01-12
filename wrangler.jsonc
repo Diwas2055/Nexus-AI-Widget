@@ -1,0 +1,32 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "nexus-ai-widget",
+	"main": "src/index.js",
+	"compatibility_date": "2026-01-12",
+	"observability": {
+		"enabled": true
+	},
+	// Static Assets - serves the embeddable widget
+	"assets": {
+		"directory": "./public",
+		"binding": "ASSETS"
+	},
+	// Workers AI binding for chat completions and embeddings
+	"ai": {
+		"binding": "AI"
+	},
+	// Vectorize for RAG - FAQ vector search
+	"vectorize": [
+		{
+			"binding": "VECTORIZE",
+			"index_name": "faq-vectors"
+		}
+	],
+	// KV for session storage
+	"kv_namespaces": [
+		{
+			"binding": "CHAT_SESSIONS",
+			"id": "171832355a114988a5daf164a86643c5"
+		}
+	]
+}
