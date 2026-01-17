@@ -1,0 +1,7 @@
+{
+  "name": "Nexus AI",
+  "greeting": "👋 Hello! I am your optimized intelligence layer. How can I assist?",
+  "color": "#ccff00",
+  "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=nexus",
+  "icon": "https://api.dicebear.com/7.x/identicon/svg?seed=nexus"
+}

@@ -1,33 +1,34 @@
-# Nexus AI Widget 🤖
+# Nexus AI Widget 🧪
 
-A premium, high-performance AI chatbot widget built on **Cloudflare Workers**, **Workers AI**, and **Vectorize**. Nexus AI utilizes RAG (Retrieval-Augmented Generation) to provide accurate, context-aware support based on your knowledge base.
+A high-performance "Liquid Neural Interface" chatbot built on **Cloudflare Workers**, **Workers AI**, and **Vectorize**. Nexus AI utilizes an avant-garde aesthetic combined with RAG (Retrieval-Augmented Generation) to deliver an elite support experience.
 
 ---
 
 ## ✨ Key Features
 
-- **🚀 Global Edge Performance**: Powered by Cloudflare Workers for 0ms cold starts worldwide.
-- **🧠 Intelligent RAG Engine**: Contextual answering using Llama 3 and Vectorize.
-- **💎 Premium UI/UX**: Stunning glassmorphism design with smooth animations.
-- **🛠 Modular Architecture**: Scalable folder structure and centralized configurations.
-- **🍪 Smart Persistence**: Remembers user conversations across sessions.
+- **🌊 Liquid Neural Interface**: An avant-garde "Bioluminescent Deep Sea" aesthetic featuring obsidian depths and acid-lime accents.
+- **🚀 Edge-Native Engine**: Powered by Cloudflare Workers for global performance and 0ms cold starts.
+- **⚙️ Zero-Latency Dynamic Config**: Real-time system configuration (Name, Greeting, Theme, Icons) powered by a write-through KV cache with static JSON fallbacks.
+- **🧠 Intelligent RAG Protocol**: Context-aware precision using Llama 3 and high-dimensional vector search.
+- **🛠 Zero-Dependency Styling**: Built with pure Vanilla CSS for maximum performance and artistic control—no Tailwind bloat.
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-├── docs/              # Detailed documentation
-├── public/            # Static assets & Demo page
-│   ├── widget.js      # The embeddable script
-│   └── styles.css     # Premium styling
+├── docs/              # Technical guides
+├── public/            
+│   ├── config/        # Static system defaults (JSON)
+│   ├── widget.js      # The Liquid Interface logic
+│   ├── styles.css     # Design system (Avant-Garde CSS)
+│   └── index.html     # Landing page & config dashboard
 ├── src/
-│   ├── api/           # Endpoint handlers
-│   ├── core/          # RAG & AI logic
-│   ├── config/        # Centralized Settings
-│   └── utils/         # Helper functions
-├── wrangler.jsonc     # Cloudflare Project Config
-└── package.json       # Build scripts & Dependencies
+│   ├── api/           # Endpoints (Chat, Config, Seed)
+│   ├── core/          # RAG Orchestration
+│   ├── utils/         # Performance helpers
+├── wrangler.jsonc     # Cloudflare Infrastructure
+└── package.json       # Ecosystem commands
 ```
 
 ---
@@ -39,28 +40,35 @@ A premium, high-performance AI chatbot widget built on **Cloudflare Workers**, *
 npm install
 ```
 
-### 2. Configuration & Setup
-Before running the project, you must configure your Cloudflare environment.
-👉 **[Read the Full Setup Guide](./docs/setup-guide.md)**
+### 2. Infrastructure Setup
+You must provision KV namespaces and Vectorize indices before deployment.
+👉 **[Read the Setup Guide](./docs/setup-guide.md)**
 
-### 3. Local Development
+### 3. Development
 ```bash
-# Run local dev server
+# Start the Neural Simulation (Local Dev)
 npm run dev
 ```
-👉 **[Read the Local Development Guide](./docs/local-development.md)**
+👉 **[Read the Development Guide](./docs/local-development.md)**
 
-### 4. Seed Data
-Populate your vector database with FAQ knowledge:
+### 4. Knowledge Uplink
+Populate your vector database with intelligence:
 ```bash
 npm run seed
 ```
 
 ---
 
-## 🏗 Deployment
+## 🎨 System Configuration
 
-Deploy to Cloudflare's global network in one command:
+The widget features a built-in **Configuration Dashboard** accessible via the "Widget Configuration" link on the landing page. This allows real-time synchronization of:
+- Agent Identity (Name & Greeting)
+- Bio-Theme (Custom Colors)
+- Visual Signature (Avatars & Launcher Icons)
+
+---
+
+## 🏗 Deployment
 ```bash
 npm run deploy
 ```
@@ -68,4 +76,4 @@ npm run deploy
 ---
 
 ## ⚖️ License
-MIT License - Created for Nexus AI Ecosystem.
+MIT License - Nexus AI Ecosystem.

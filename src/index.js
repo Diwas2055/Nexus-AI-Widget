@@ -1,6 +1,7 @@
 import { chat } from './api/chat.js';
 import { seed } from './api/seed.js';
 import { getHistory } from './api/history.js';
+import { getConfig } from './api/config.js';
 import { json, corsHeaders } from './utils/shared.js';
 
 export default {
@@ -29,6 +30,10 @@ export default {
 
       if (path === '/api/seed' && req.method === 'POST') {
         return await seed(req, env);
+      }
+
+      if (path === '/api/config') {
+        return await getConfig(req, env);
       }
 
       if (path === '/api/health') {

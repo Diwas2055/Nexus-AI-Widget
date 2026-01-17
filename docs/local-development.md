@@ -1,66 +1,52 @@
-# Nexus AI | Local Development Guide
+# Nexus AI | Local Development
 
-Learn how to run, test, and modify the Nexus AI widget on your local machine.
+Guide for modifying the Liquid Neural Interface and testing local intelligence simulations.
 
-## 1. Local Installation
-
-Clone the repository and install the development dependencies:
+## 1. Startup Protocols
 
 ```bash
-npm install
-```
-
----
-
-## 2. Running Local Development
-
-Nexus AI supports two modes of local development depending on your needs.
-
-### A. Full Local Emulation
-To run entirely on your local machine (using local emulators for KV and Vectorize):
-
-```bash
+# Optimized for local emulation
 npm run dev
 ```
-*Note: In this mode, data is stored in `.wrangler/state`. You will need to run `npm run seed` while the server is running to populate your local database.*
 
-### B. Remote Development (Hybrid)
-To run local code but connect to **remote** Cloudflare AI, KV, and Vectorize:
-
-```bash
-npm run dev:remote
-```
-*This is the recommended way to test RAG accuracy with real production data.*
+The system will start at `http://localhost:8787`.
 
 ---
 
-## 3. Project Structure & Architecture
+## 2. Configuration Simulation
 
-Nexus AI uses a modern, modular design:
+Nexus AI features a real-time **Config Dashboard** on the landing page. 
+1. Open the landing page at `localhost:8787`.
+2. Click **"Widget Configuration"** in the top navigation.
+3. Modify Agent Name, Greeting, or Bio-Colors (Hex).
+4. Click **"SYNC SYSTEM"** to apply changes instantly.
 
-- **`src/api/`**: Route handlers for chat, history, and seeding.
-- **`src/core/`**: Orchestration logic and Vector search (RAG).
-- **`src/config/`**: Centralized models (`models.js`) and app settings (`app.js`).
-- **`src/utils/`**: Shared helpers and middleware.
-- **`public/`**: The widget frontend (`widget.js`) and landing page.
-
----
-
-## 4. Testing the Widget
-
-1. Start the development server (`npm run dev`).
-2. Open `http://localhost:8787` in your browser.
-3. You will see the **Nexus AI** landing page.
-4. Use the chat bubble in the bottom-right corner to interact with the AI.
+*Note: In local dev mode, these settings persist in the `.wrangler/state/v3` directory.*
 
 ---
 
-## 5. Modifying Styles
+## 3. Design System (Vanilla CSS)
 
-The project uses Tailwind CSS. To modify the design:
-1. Edit `src/input.css` or the class names in `public/index.html` and `public/widget.js`.
-2. The `dev` script will automatically recompile `public/styles.css`.
-3. To manually build production CSS:
-   ```bash
-   npm run build:css
-   ```
+Unlike traditional SaaS widgets, Nexus AI uses **Avant-Garde Vanilla CSS** for zero-latency rendering.
+
+- **Global Tokens**: Managed in `public/styles.css` using CSS Variables (`--acid-lime`, `--void-depth`).
+- **Widget Specifics**: Styles are injected dynamically via `public/widget.js` to ensure the widget remains lightweight and independent.
+- **Modifying UI**: Edit the `<style>` block inside the `init()` function of `public/widget.js`.
+
+---
+
+## 4. RAG Testing (Knowledge Retrieval)
+
+To test how well the AI answers based on your data:
+1. Ensure the server is running.
+2. Run `npm run seed` to populate the local vector store.
+3. Ask questions in the widget.
+4. If the backend is unavailable or not seeded, the widget will enter **Neural Simulation Mode** (Demo Mode) to demonstrate UI interactions.
+
+---
+
+## 5. Directory Mapping
+
+- `src/api/config.js`: Logic for the system configuration sync.
+- `src/core/faq.js`: Orchestration for Vectorize and LLM queries.
+- `public/config/default.json`: Static defaults for zero-latency initial load.

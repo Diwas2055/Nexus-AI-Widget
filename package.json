@@ -4,9 +4,9 @@
 	"private": true,
 	"scripts": {
 		"build:css": "npx tailwindcss -i ./src/input.css -o ./public/styles.css --minify",
-		"dev": "npm run build:css && wrangler dev",
-		"dev:remote": "npm run build:css && wrangler dev --remote",
-		"deploy": "npm run build:css && wrangler deploy",
+		"dev": "wrangler dev",
+		"dev:remote": "wrangler dev --remote",
+		"deploy": "wrangler deploy",
 		"seed": "curl -X POST http://localhost:8787/api/seed",
 		"preview": "wrangler pages dev ./public"
 	},

@@ -19,14 +19,21 @@
 	"vectorize": [
 		{
 			"binding": "VECTORIZE",
-			"index_name": "faq-vectors"
+			"index_name": "faq-vectors",
+			"remote": true
 		}
 	],
 	// KV for session storage
 	"kv_namespaces": [
 		{
 			"binding": "CHAT_SESSIONS",
-			"id": "171832355a114988a5daf164a86643c5"
+			"id": "8e851124c9e3490fae237a3e1539eccf",
+			"remote": true
+		},
+		{
+			"binding": "CONFIG_STORE",
+			"id": "2ae7b74d2eb84bcabc947f154d0ac566",
+			"remote": true
 		}
 	]
 }

@@ -1,92 +1,79 @@
-# Nexus AI | Detailed Setup Guide
+# Nexus AI | Technical Setup Guide
 
-This guide covers the initial configuration and Cloudflare environment setup required to run the Nexus AI Chatbot Widget.
+This guide covers the infrastructure required to run the Nexus AI "Liquid Neural" environment on Cloudflare.
 
 ## 1. Prerequisites
 
-- **Node.js**: v18.0.0 or higher
-- **Cloudflare Account**: [Sign up here](https://dash.cloudflare.com/sign-up)
-- **Wrangler CLI**: Installed globally (`npm install -g wrangler`)
+- **Node.js**: v18.0.0+
+- **Cloudflare Account**: [Sign up](https://dash.cloudflare.com/sign-up)
+- **Wrangler CLI**: `npm install -g wrangler`
 
 ---
 
-## 2. Cloudflare Infrastructure Setup
+## 2. Infrastructure Provisioning
 
-Nexus AI relies on three core Cloudflare services. You must create these resources before the application can function.
+### A. KV Namespaces
+Nexus AI requires two KV namespaces: one for user sessions and one for dynamic system configuration.
 
-### A. Authentication
-First, authenticate your local machine with your Cloudflare account:
 ```bash
-npx wrangler login
-```
+# 1. Session Storage
+npx wrangler kv namespace create CHAT_SESSIONS
 
-### B. KV Namespace (Session Storage)
-Create the Key-Value storage for chat histories:
-```bash
-npx wrangler kv:namespace create CHAT_SESSIONS
+# 2. System Configuration
+npx wrangler kv namespace create CONFIG_STORE
 ```
-**Required Action:** Copy the `id` from the output and paste it into `wrangler.jsonc` under the `kv_namespaces` section.
+**Action:** Copy the IDs from the output and paste them into `wrangler.jsonc` under `kv_namespaces`.
 
-### C. Vectorize Index (RAG Engine)
-Create the vector database for the FAQ knowledge base:
+### B. Vectorize Index (Intelligence Layer)
+Create the high-dimensional vector database:
 ```bash
 npx wrangler vectorize create faq-vectors --dimensions=768 --metric=cosine
 ```
-*Note: We use 768 dimensions to match the `bge-base-en-v1.5` embedding model.*
+*Note: Dimensions are matched to the `bge-base-en-v1.5` model.*
 
 ---
 
-## 3. Configuration
+## 3. Configuration Binding
 
-### Project Bindings (`wrangler.jsonc`)
-Ensure your `wrangler.jsonc` matches your created resources:
+Update your `wrangler.jsonc` bindings to match your new resources:
+
 ```jsonc
 {
-  "name": "nexus-ai-widget",
-  "compatibility_date": "2026-01-12",
   "kv_namespaces": [
     {
       "binding": "CHAT_SESSIONS",
-      "id": "YOUR_KV_ID_HERE"
+      "id": "SESSION_KV_ID"
+    },
+    {
+      "binding": "CONFIG_STORE",
+      "id": "CONFIG_KV_ID"
     }
   ],
   "vectorize": [
-    {
-      "binding": "VECTORIZE",
-      "index_name": "faq-vectors"
-    }
+    { "binding": "VECTORIZE", "index_name": "faq-vectors" }
   ],
-  "ai": {
-    "binding": "AI"
-  }
+  "ai": { "binding": "AI" }
 }
 ```
 
-### AI Models & Prompts
-- **Models**: Managed in `src/config/models.js`
-- **Prompts & FAQ**: Managed in `src/config/app.js`
-
 ---
 
-## 4. Deployment to Cloudflare
+## 4. Seeding the Neural Network
 
-Deploy the worker to the global edge network:
-
-```bash
-# Build styles and deploy
-npm run deploy
-```
-
-Once deployed, your backend API and static assets (the widget) will be live at `https://nexus-ai-widget.[your-subdomain].workers.dev`.
-
----
-
-## 5. Seeding the Knowledge Base
-
-After deployment (or while running `npm run dev:remote`), you must "seed" the vector database with your FAQ data:
+Once infrastructure is bound, you must upload your knowledge base:
 
 ```bash
-# Uses the 'seed' script in package.json
 npm run seed
 ```
-This will take the data from `src/config/app.js`, generate embeddings, and upload them to Cloudflare Vectorize.
+This processes documentation from `src/config/app.js` (or your chosen source), generates embeddings, and populates the `faq-vectors` index.
+
+---
+
+## 5. Deployment
+
+Push your interface to the global edge:
+
+```bash
+npm run deploy
+```
+Your widget script will be available at: `https://[your-worker-url]/widget.js`
